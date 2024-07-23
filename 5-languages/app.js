@@ -1,4 +1,4 @@
-const language = prompt('write your language');
+const language = prompt('write your language').toLowerCase()
 switch (language) {
     case 'en':
         alert('Welcome! Have a nice day!')
