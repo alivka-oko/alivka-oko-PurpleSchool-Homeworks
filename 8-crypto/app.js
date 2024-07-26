@@ -15,7 +15,9 @@ console.log(`    Пароль: люблюкотиков
 `)// Успешно 
 
 function cryptoPassword(password) {
+    //password
     let passArray = password.split('');
+
     // последний элемент в начало dpasswor
     let lastItem = passArray.pop();
     passArray.unshift(lastItem);
@@ -39,6 +41,7 @@ function cryptoPassword(password) {
 function check(crypto, password) {
     //sdpswoar
     let cryptoArray = crypto.split('');
+    
     //предпоследний в конец: sdpswora
     let penultimate = cryptoArray.splice(-2, 1)[0];
     cryptoArray.push(penultimate);
@@ -48,6 +51,7 @@ function check(crypto, password) {
     leftSide.push(leftSide[0]);
     leftSide.shift();
     cryptoArray = leftSide.concat(cryptoArray);
+
     //последний элемент на 3 элемент :dpasswor
     let rightSide = cryptoArray.splice(2);
     rightSide.unshift(rightSide[rightSide.length - 1]);
