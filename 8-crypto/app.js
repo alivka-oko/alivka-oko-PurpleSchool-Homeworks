@@ -1,18 +1,4 @@
-console.log(`    Пароль: password
-    Шифрование: ${cryptoPassword('password')}
-    Проверка пароля:  ${check('sdpswoar', 'password') ? 'Успешно' : 'Неудачно :('}
-`) // Успешно 
-
-
-console.log(`    Пароль: крошкакартошка
-    Шифрование: ${cryptoPassword('крошкакартошка')}
-    Проверка пароля:  ${check('оакшкакшртошкк', 'крошкакартошка') ? 'Успешно' : 'Неудачно :('}
-`) // Неудачно :( (правильный вариант: оакшкакартошрк) 
-
-console.log(`    Пароль: люблюкотиков
-    Шифрование: ${cryptoPassword('люблюкотиков')}
-    Проверка пароля:  ${check('бвллюкотикюо', 'люблюкотиков') ? 'Успешно' : 'Неудачно :('}
-`)// Успешно 
+//Создать простую функцию шифрования пароля.
 
 function cryptoPassword(password) {
     //password
@@ -38,10 +24,10 @@ function cryptoPassword(password) {
     return result;
 }
 
-function check(crypto, password) {
+function checkPassword(crypto, password) {
     //sdpswoar
     let cryptoArray = crypto.split('');
-    
+
     //предпоследний в конец: sdpswora
     let penultimate = cryptoArray.splice(-2, 1)[0];
     cryptoArray.push(penultimate);
@@ -68,4 +54,22 @@ function check(crypto, password) {
 
     return result;
 }
+
+
+console.log(`    Пароль: password
+    Шифрование: ${cryptoPassword('password')}
+    Проверка пароля:  ${checkPassword('sdpswoar', 'password') ? 'Успешно' : 'Неудачно :('}
+`) // Успешно 
+
+
+console.log(`    Пароль: крошкакартошка
+    Шифрование: ${cryptoPassword('крошкакартошка')}
+    Проверка пароля:  ${checkPassword('оакшкакшртошкк', 'крошкакартошка') ? 'Успешно' : 'Неудачно :('}
+`) // Неудачно :( (правильный вариант: оакшкакартошрк) 
+
+console.log(`    Пароль: люблюкотиков
+    Шифрование: ${cryptoPassword('люблюкотиков')}
+    Проверка пароля:  ${checkPassword('бвллюкотикюо', 'люблюкотиков') ? 'Успешно' : 'Неудачно :('}
+`)// Успешно 
+
 
