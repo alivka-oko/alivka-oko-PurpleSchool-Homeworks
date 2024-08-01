@@ -24,10 +24,7 @@ function filterArray(array, fn) {
 
 
 function deleteElement(element) {
-    if (element > 5) {
-        return true
-    }
-    return false
+    return element > 5;
 }
 
 console.log(filterArray(arr, deleteElement))
