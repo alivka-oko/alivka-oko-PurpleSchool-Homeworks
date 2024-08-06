@@ -1,35 +1,26 @@
 //Реализовать сортировку массива чисел с помощью циклов.
 let arr = [1, 40, -5, 10, 0];
 
-//  Сортировка по убыванию
-function SortDesc(arr) {
-    for (let currentIndex in arr) {
-        for (let neighborIndex in arr) {
-            let neighbor = arr[neighborIndex];
-            let current = arr[currentIndex];
-            if (current > neighbor) {
-                arr[neighborIndex] = current;
-                arr[currentIndex] = neighbor;
-            }
-        }
+function orderTemplate(firstNumber, secondNumber, desc) {
+    if (!desc) {
+        return firstNumber > secondNumber;
     }
-    return arr
+    return firstNumber < secondNumber;
 }
-//  Сортировка по возрастанию
-function SortAsc(arr) {
-    for (let currentIndex in arr) {
-        for (let neighborIndex in arr) {
-            let neighbor = arr[neighborIndex];
-            let current = arr[currentIndex];
-            if (current < neighbor) {
-                arr[neighborIndex] = current;
-                arr[currentIndex] = neighbor;
+
+function SortArray(incomingArray, desc = false) {
+    const array = [...incomingArray];
+    for (let currentIndex = 0; currentIndex < array.length; currentIndex++) {
+        for (let neighborIndex = currentIndex; neighborIndex < array.length; neighborIndex++) {
+            const sortingConditions = orderTemplate(array[neighborIndex], array[currentIndex], desc)
+            if (sortingConditions) {
+                [array[neighborIndex], array[currentIndex]] = [array[currentIndex], array[neighborIndex]]
             }
         }
     }
-    return arr
+    return array
 }
 
 console.log('Отсортированный массив:')
-console.log(SortAsc(arr)) // [-5, 0, 1, 10, 40]
-console.log(SortDesc(arr)) // [40, 10, 1, 0, -5]
+console.log(SortArray(arr)) // [-5, 0, 1, 10, 40]
+console.log(SortArray(arr, true)) // [40, 10, 1, 0, -5]
