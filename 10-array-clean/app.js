@@ -12,14 +12,13 @@ false, если надо оставить
 const arr = [3, 6, 9, 2];
 
 function filterArray(array, fn) {
-    for (let i = 0; i < array.length; i++) {
-        if (fn(array[i])) {
-            array.splice(i, 1);
-            i--
+    const resultArray = [];
+    for (const el of array) {
+        if (!fn(el)) {
+            resultArray.push(el)
         }
     }
-
-    return array;
+    return resultArray;
 }
 
 

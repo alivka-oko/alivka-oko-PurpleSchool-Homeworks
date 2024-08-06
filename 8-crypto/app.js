@@ -1,75 +1,49 @@
 //Создать простую функцию шифрования пароля.
 
 function cryptoPassword(password) {
+    if (!password || !password.length) { return NaN; }
     //password
-    let passArray = password.split('');
-
+    let splitedArray = password.split('');
+    if (splitedArray.length <= 8) { // длина пароля не менее 8 символов
+        return false;
+    }
     // последний элемент в начало dpasswor
-    let lastItem = passArray.pop();
-    passArray.unshift(lastItem);
+    let lastItem = splitedArray.pop();
+    splitedArray.unshift(lastItem);
 
     // третий элемент в конце dpsswora
-    let thirdItem = passArray.splice(2, 1)[0];
-    passArray.push(thirdItem);
+    let thirdItem = splitedArray.splice(2, 1)[0];
+    splitedArray.push(thirdItem);
 
     // третий элемент в начало sdpswora
-    let thirdItemRepeat = passArray.splice(2, 1)[0];
-    passArray.unshift(thirdItemRepeat);
+    let thirdItemRepeat = splitedArray.splice(2, 1)[0];
+    splitedArray.unshift(thirdItemRepeat);
 
     // предпоследний в конец sdpswoar
-    let penultimate = passArray.splice(-2, 1)[0];
-    passArray.push(penultimate);
+    let penultimate = splitedArray.splice(-2, 1)[0];
+    splitedArray.push(penultimate);
 
-    const result = passArray.join('')
+    const result = splitedArray.join('')
     return result;
 }
 
 function checkPassword(crypto, password) {
-    //sdpswoar
-    let cryptoArray = crypto.split('');
-
-    //предпоследний в конец: sdpswora
-    let penultimate = cryptoArray.splice(-2, 1)[0];
-    cryptoArray.push(penultimate);
-
-    //первый элемент на 3 элемент :dpsswora
-    let leftSide = cryptoArray.splice(0, 3);
-    leftSide.push(leftSide[0]);
-    leftSide.shift();
-    cryptoArray = leftSide.concat(cryptoArray);
-
-    //последний элемент на 3 элемент :dpasswor
-    let rightSide = cryptoArray.splice(2);
-    rightSide.unshift(rightSide[rightSide.length - 1]);
-    rightSide.pop();
-    cryptoArray = cryptoArray.concat(rightSide);
-
-    //первый на последнее место:password
-    let firstItem = cryptoArray[0];
-    cryptoArray.push(firstItem);
-    cryptoArray.shift();
-
-    let decryption = cryptoArray.join('');
-    let result = decryption == password ? true : false;
-
-    return result;
+    if (!crypto || !password) {
+        return false
+    }
+    return cryptoPassword(password) === crypto
 }
 
 
-console.log(`    Пароль: password
-    Шифрование: ${cryptoPassword('password')}
-    Проверка пароля:  ${checkPassword('sdpswoar', 'password') ? 'Успешно' : 'Неудачно :('}
-`) // Успешно 
+password1 = 'alivka123'
+encrypted1 = cryptoPassword(password1);
 
+console.log('Пароль:', password1);
+console.log('Зашифрованный пароль:', encrypted1);
+console.log('Проверка пароля:', checkPassword(encrypted1, password1));
 
-console.log(`    Пароль: крошкакартошка
-    Шифрование: ${cryptoPassword('крошкакартошка')}
-    Проверка пароля:  ${checkPassword('оакшкакшртошкк', 'крошкакартошка') ? 'Успешно' : 'Неудачно :('}
-`) // Неудачно :( (правильный вариант: оакшкакартошрк) 
-
-console.log(`    Пароль: люблюкотиков
-    Шифрование: ${cryptoPassword('люблюкотиков')}
-    Проверка пароля:  ${checkPassword('бвллюкотикюо', 'люблюкотиков') ? 'Успешно' : 'Неудачно :('}
-`)// Успешно 
-
-
+password2 = 'alivka123'
+encrypted2 = cryptoPassword(password2).substring(1);
+console.log('Пароль:', password2);
+console.log('Зашифрованный пароль:', encrypted2);
+console.log('Проверка пароля:', checkPassword(encrypted2, password2));
