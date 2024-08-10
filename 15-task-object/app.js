@@ -68,7 +68,6 @@ ToDoList.deleteTask(2)
 
 console.log('--- Обновление задач ---')
 ToDoList.updateTask(1, 'Да прибудет с тобой название', 4)
-console.log(ToDoList.tasks)
 
 
 console.log('--- Сортировка задач ---')
