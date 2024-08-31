@@ -67,31 +67,37 @@ const newTask = {
     lastIdTask: 0,
 }
 
-newTask.getIdTask = ToDoList.getIdTask;
-newTask.addTask = ToDoList.addTask;
-newTask.deleteTask = ToDoList.deleteTask;
-newTask.updateTask = ToDoList.updateTask;
-newTask.sortTasks = ToDoList.sortTasks;
+newTask.getIdTask = ToDoList.getIdTask.bind(newTask);
+newTask.addTask = ToDoList.addTask.bind(newTask);
+newTask.deleteTask = ToDoList.deleteTask.bind(newTask);
+newTask.updateTask = ToDoList.updateTask.bind(newTask);
+newTask.sortTasks = ToDoList.sortTasks.bind(newTask);
+
+const newTaskGetIdTask = ToDoList.getIdTask.bind(newTask);
+const newTaskaddTask = ToDoList.addTask.bind(newTask);
+const newTaskdeleteTask = ToDoList.deleteTask.bind(newTask);
+const newTaskupdateTask = ToDoList.updateTask.bind(newTask);
+const newTasksortTasks = ToDoList.sortTasks.bind(newTask);
 
 console.log('--- Добавление задач ---')
-newTask.addTask(); // добавление дефолтной задачи "без названия"
-newTask.addTask(data);
-newTask.addTask(data2);
-newTask.addTask(data);
-newTask.addTask();
+newTaskaddTask(); // добавление дефолтной задачи "без названия"
+newTaskaddTask(data)
+newTaskaddTask(data2)
+newTaskaddTask(data)
+newTaskaddTask();
 
-newTask.addTask({
+newTaskaddTask({
     title: 'Еще задача'
 });
 console.log('--- Удаление задач ---')
-newTask.deleteTask(1)
+newTaskdeleteTask(1)
 
 console.log('--- Обновление задач ---')
-newTask.updateTask(2, updateData);
+newTaskupdateTask(2, updateData);
 
 
 console.log('--- Сортировка задач ---')
-newTask.sortTasks(false, 'order')
+newTasksortTasks(false, 'order')
 
 console.log('--- newTask задач ---')
 console.log(newTask.tasks)

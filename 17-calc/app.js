@@ -1,11 +1,15 @@
 const operations = document.querySelectorAll('.operation')
 const resultField = document.querySelector('.result-field');
 
-operations.forEach((element) => {
-    element.addEventListener('click', () => {
-        calcInputs(element.getAttribute('action')) // ну или просто textContent
-    })
-})
+const buttons = document.querySelector('.arithmetic-operations');
+buttons.addEventListener('click', (event) => {
+    if (event.target.tagName !== 'BUTTON') {
+        return;
+    }
+
+    const action = event.target.getAttribute('action');
+    calcInputs(action);
+});
 
 function calcInputs(action) {
     /*Как я поняла, закомментированный  вариант снизу не самый безопасный из-за eval(), но симпатичнее */
