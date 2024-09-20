@@ -5,14 +5,21 @@
 
 "use strict";
 function diceRoll(type) {
-  const UpperCaseType = type.toUpperCase();
-  const supportedTypes = ["D4", "D6", "D8", "D10", "D12", "D16", "D20"];
-  if (!supportedTypes.includes(UpperCaseType)) {
+  const upperCaseType = type.toUpperCase();
+  const supportedTypes = {
+    D4: 4,
+    D6: 6,
+    D8: 8,
+    D10: 10,
+    D12: 12,
+    D16: 16,
+    D20: 20,
+  };
+  if (!(upperCaseType in supportedTypes)) {
     return "Не поддерживаемый тип";
   }
-  const NumberType = Number(type.substring(1));
-  const randomResult = Math.floor(Math.random() * NumberType + 1);
-  return randomResult;
+  const max = supportedTypes[upperCaseType];
+  return Math.floor(Math.random() * max + 1);
 }
 console.log(diceRoll("D6"));
 console.log(diceRoll("D5"));
