@@ -10,36 +10,21 @@ const page = {
 
 function renderDOMTimer() {
   const now = new Date();
+  const daysInMonth = new Date(
+    now.getFullYear(),
+    now.getMonth() + 1,
+    0
+  ).getDate();
   page.months.textContent = 12 - (now.getMonth() + 1);
-  page.days.textContent = 31 - now.getDate();
+  page.days.textContent = daysInMonth - now.getDate();
   page.hours.textContent = 23 - now.getHours();
   page.minutes.textContent = 59 - now.getMinutes();
   page.seconds.textContent = 59 - now.getSeconds();
 }
 
+// init
 (() => {
   setInterval(() => {
-    renderDOMTimer2();
+    renderDOMTimer();
   }, 1000);
 })();
-
-function renderDOMTimer2() {
-  const now = new Date();
-  const newYear = new Date(now.getFullYear() + 1, 0, 1);
-
-  const diff = new Date(newYear - now);
-  const month = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
-  const allDays = diff / (1000 * 60 * 60 * 24);
-  const days = Math.floor(allDays - month * 30 - 1);
-  const [hour, minute, second] = [
-    23 - now.getHours(),
-    59 - now.getMinutes(),
-    59 - now.getSeconds(),
-  ];
-
-  page.months.textContent = month;
-  page.days.textContent = days;
-  page.hours.textContent = hour;
-  page.minutes.textContent = minute;
-  page.seconds.textContent = second;
-}

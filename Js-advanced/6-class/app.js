@@ -14,11 +14,11 @@ class Car {
   get info() {
     console.log(`Марка: ${this.#brand}`);
     console.log(`Модель: ${this.#model}`);
-    console.log(`Пробег: ${this.#mileage}`);
+    console.log(`Пробег: ${this.#mileage} км`);
   }
 
   get mileage() {
-    return this.#mileage;
+    return this.#mileage + " км";
   }
 
   set mileage(value) {
