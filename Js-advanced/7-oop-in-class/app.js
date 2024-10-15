@@ -13,9 +13,8 @@ class Character {
   get health() {
     return this.#health;
   }
-
-  set health(value) {
-    this.#health += value;
+  takeDamage(value) {
+    this.#health -= value;
   }
 
   speak() {
@@ -38,11 +37,9 @@ class Orc extends Character {
       return;
     }
     console.log(
-      `${this.name} атаковал ${enemy.name} с помощью ${
-        this.weapon.name
-      } и нанес ${Math.abs(this.weapon.damage)} урона`
+      `${this.name} атаковал ${enemy.name} с помощью ${this.weapon.name} и нанес ${this.weapon.damage} урона`
     );
-    enemy.health = this.weapon.damage;
+    enemy.takeDamage(this.weapon.damage);
   }
 }
 
@@ -66,15 +63,11 @@ class Elf extends Character {
   }
 
   addSpell(spell) {
-    if (
-      !(typeof spell === "object" && !Array.isArray(spell) && spell !== null)
-    ) {
+    if (!(typeof spell === "object" && !Array.isArray(spell) && spell !== null)) {
       return;
     }
 
-    const isExist = this.spellSet.spells.find(
-      (spellItem) => spellItem.name == spell.name
-    )
+    const isExist = this.spellSet.spells.find((spellItem) => spellItem.name == spell.name)
       ? true
       : false;
 
@@ -91,29 +84,27 @@ class Elf extends Character {
     if (!(enemy instanceof Character) || !(this.spellSet.spells.length !== 0)) {
       return;
     }
-    const chosenSpell = this.spellSet.spells.find(
-      (spell) => spell.id === spellId
-    );
+    const chosenSpell = this.spellSet.spells.find((spell) => spell.id === spellId);
     if (!chosenSpell) {
       return;
     }
     console.log(
-      `${this.name} атаковал ${enemy.name} с помощью ${
-        chosenSpell.name
-      } и нанес ${Math.abs(chosenSpell.damage)} урона`
+      `${this.name} атаковал ${enemy.name} с помощью ${chosenSpell.name} и нанес ${Math.abs(
+        chosenSpell.damage
+      )} урона`
     );
-    enemy.health = chosenSpell.damage;
+    enemy.takeDamage(chosenSpell.damage);
   }
 }
 
 const weapon = {
   name: "Бита",
-  damage: -20,
+  damage: 20,
 };
 
 const spell = {
   name: "Вихревой огонь",
-  damage: -25,
+  damage: 25,
 };
 
 const orc = new Orc("Гришнак", "Чёрная речь", weapon);
