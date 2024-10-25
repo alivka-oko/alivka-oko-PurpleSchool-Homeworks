@@ -1,0 +1,16 @@
+{
+  "name": "15",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server",
+    "build": "rollup index.js --format umd --name 'bundle' --file bundle.js ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^4.24.0"
+  }
+}
